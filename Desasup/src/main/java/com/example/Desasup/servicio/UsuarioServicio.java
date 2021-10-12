@@ -1,6 +1,7 @@
 package com.example.Desasup.servicio;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import com.example.Desasup.modelo.UsuarioModelo;
 import com.example.Desasup.repositorios.UsuarioRepositorio;
@@ -22,7 +23,19 @@ public class UsuarioServicio {
     public UsuarioModelo guardarUsuario(UsuarioModelo usuario){
         return usuarioRepositorio.save(usuario);
         
+    }
 
+    public Optional<UsuarioModelo> obtenerUsuarioPorId(Long id) {
+        return usuarioRepositorio.findById(id);
+    }
+
+    public boolean eliminarUsuarioPorId (Long id){
+        try {
+            usuarioRepositorio.deleteById(id); 
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     
